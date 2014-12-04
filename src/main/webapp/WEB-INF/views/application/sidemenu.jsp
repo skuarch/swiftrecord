@@ -11,11 +11,10 @@
                             <i class="fa fa-search"></i>
                         </button>
                     </span>
-                </div>
-                <!-- /input-group -->
+                </div>                
             </li>
             <li>
-                <a class="active" href="dashboard.html">
+                <a href="dashboard.html">
                     <i class="fa fa-dashboard fa-fw">                        
                     </i>
                     <spring:message code="text23" />
@@ -31,16 +30,37 @@
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="newproduct.html"><spring:message code="text25" /></a>
+                        <a href="createNewProduct.html">
+                            <spring:message code="text25" />
+                        </a>
                     </li>
                     <li>
-                        <a href="morris.html">Morris.js Charts</a>
+                        <a href="productList.html">
+                            Product List
+                        </a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                <a href="#">
+                    <i class="fa fa-sitemap fa-fw"></i> 
+                    Warehouses
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="createNewWarehouse.html">
+                            Create new Warehouse
+                        </a>
+                    </li>
+                    <li>
+                        <a href="productList.html">
+                            Warehouses List
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
             </li>
             <li>
                 <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>

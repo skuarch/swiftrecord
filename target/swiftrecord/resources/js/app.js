@@ -29,6 +29,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 $(function(){$("#side-menu").metisMenu()});$(function(){$(window).bind("load resize",function(){topOffset=50;width=(this.window.innerWidth>0)?this.window.innerWidth:this.screen.width;if(width<768){$("div.navbar-collapse").addClass("collapse");topOffset=100}else{$("div.navbar-collapse").removeClass("collapse")}height=(this.window.innerHeight>0)?this.window.innerHeight:this.screen.height;height=height-topOffset;if(height<1){height=1}if(height>topOffset){$("#page-wrapper").css("min-height",(height)+"px")}})});
 
 var wsNotifications;
+var loader = "<i class='fa fa-refresh fa-spin'></i>";
 
 //==============================================================================
 $(document).ready(function(){
@@ -74,7 +75,7 @@ $('#loginForm').submit(function(event){
         $('#loginButton').prop('disabled', false);        
         alertify.error(msg);
         return;
-    }
+    }   
     
     data = {email:mail,password:$.md5(pass)};
 
@@ -109,7 +110,7 @@ $('#loginForm').submit(function(event){
             $('#loginButton').prop('disabled', false);            
         },
         error: function (jqXHR, status, error) {
-            alertify.error(text15);
+            alertify.error(text15);            
         }
     });     
    
@@ -143,7 +144,7 @@ function notifications() {
             alertify.log(e.data);
         };
         wsNotifications.onerror = function () {
-            alertify.error(text21, "", 0);
+            alertify.error(text21, "", 0);            
         };
 
     } catch (e) {
@@ -176,4 +177,91 @@ function testNotification(text){
        }       
    });
    
+}
+
+function createNewProductSubmit(event){    
+    
+    event.preventDefault();
+    $("#message").hide();
+    var data = $("#createProduct").serializeArray();
+    
+    if(data[0].value === "" || data[0].value === undefined || data[0].value.length < 1){
+        $("#message").html(text21);
+        return;
+    }    
+    
+    $.ajax({
+        
+        url:"createNewProductProcess.html",
+        type:"post",        
+        dataType: "json",
+        data:data,
+        success:function(data){
+          if(data.hasOwnProperty("error")){           
+           $("#message").html(data.error);
+           $("#message").fadeIn();            
+           alertify.error(data.error);
+          }else{
+            alertify.alert(data.message.toString());
+          }
+        },
+        error:function(){
+            alertify.error(text15);
+            $("#message").html(text15);
+            $("#message").fadeIn();            
+        }
+        
+    });
+}
+
+(function(){ 
+    l = window.location.pathname;
+    l = l.replace("/swiftrecord/","");
+    l = l.replace(".html","");
+    switch (l){        
+        case "createNewProduct":  
+            createNewProductForm();
+            break;
+        case "productList":  
+            productListAjax();
+            break;        
+    }
+})();
+
+function createNewProductForm(){
+    $("#output").html(loader);
+    $.ajax({
+        url:"createNewProductForm.html",
+        success:function(data){
+            $("#output").html(data);             
+            document.getElementById('createProduct')
+                    .addEventListener('submit', function(event) {
+                        createNewProductSubmit(event);
+                    });
+        }
+    });
+}
+
+
+function productListAjax(){
+    $("#output").html(loader);
+    $.ajax({
+        url:"productListTable.html",
+        success:function(data){
+            $("#output").html(data);
+            $('#tableProductList').DataTable();
+        }
+    });
+}
+
+function productDetail(id){
+    $("#outputProducModalDetail").html(loader);
+    $.ajax({
+        url:"productDetails.html",
+        type:"post",
+        data:{id:id},
+        success:function(data){            
+            $("#outputProducModalDetail").html(data);            
+        }
+    });        
 }

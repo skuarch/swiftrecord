@@ -19,6 +19,18 @@ public class I18N {
         arrayList.add("text15");
         arrayList.add("text20");
         arrayList.add("text21");
+        arrayList.add("text44");
+        arrayList.add("text45");
+        arrayList.add("text46");
+        arrayList.add("text47");
+        arrayList.add("text48");
+        arrayList.add("text49");
+        arrayList.add("text50");
+        arrayList.add("text51");
+        arrayList.add("text52");
+        arrayList.add("text53");
+        arrayList.add("text54");
+        arrayList.add("text55");
     }
     
     private I18N(){

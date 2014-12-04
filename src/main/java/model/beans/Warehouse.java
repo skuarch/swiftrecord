@@ -17,16 +17,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "warehouse")
 public class Warehouse {
-  
+
     @Id
     @Column(name = "warehouse_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     @Column(name = "warehouse_name", nullable = false)
-    private String name;   
-    
-    //@OneToMany(cascade={CascadeType.ALL})
+    private String name;
+
     @OneToOne
     @JoinColumn(name = "address_id")
     @Basic(optional = false)
@@ -54,5 +53,5 @@ public class Warehouse {
 
     public void setAddress(Address address) {
         this.address = address;
-    }    
-} 
+    }
+}

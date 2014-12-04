@@ -1,0 +1,5 @@
+#connection pool
+asadmin create-jdbc-connection-pool --user admin --datasourceclassname com.mysql.jdbc.jdbc2.optional.MysqlDataSource --restype javax.sql.DataSource --property user=root:password=vitalnoc:DatabaseName=swiftrecord:ServerName=localhost:port=3306 swiftrecord 
+
+#jdbc resource
+asadmin create-jdbc-resource --connectionpoolid swiftrecord jdbc/swiftrecord

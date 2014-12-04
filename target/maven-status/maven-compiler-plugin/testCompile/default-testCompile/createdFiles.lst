@@ -1,4 +1,3 @@
+model/util/TestCreateFile.class
 controllers/application/AuthenticationTest.class
 model/net/TestingMail.class
-model/util/TestCreateFile.class
-model/database/DAOAdaptativeTest.class

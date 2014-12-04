@@ -14,7 +14,7 @@
 %>
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>        
         <jsp:include page="../application/head.jsp"/>
         <script src="<c:url value="/resources/js/Chart.js"/>"></script>
     </head>

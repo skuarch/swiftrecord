@@ -22,7 +22,7 @@ public class CreateNewProduct extends BaseController {
     private static final Logger logger = Logger.getLogger(CreateNewProduct.class);
 
     //==========================================================================
-    @RequestMapping(value = {"newproduct", "/newproduct"})
+    @RequestMapping(value = {"createNewProduct", "/createNewProduct"})
     public ModelAndView createNewProduct(Locale locale) {
 
         ModelAndView mav = null;
@@ -32,7 +32,7 @@ public class CreateNewProduct extends BaseController {
             mav = new ModelAndView("products/createNewProduct");            
 
         } catch (Exception e) {
-            HandlerExceptionUtil.handleException(mav, messageSource, e, logger, locale);
+            HandlerExceptionUtil.alert(mav, messageSource, e, logger, locale);
         }
 
         return mav;
