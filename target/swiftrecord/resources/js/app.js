@@ -214,20 +214,6 @@ function createNewProductSubmit(event){
     });
 }
 
-(function(){ 
-    l = window.location.pathname;
-    l = l.replace("/swiftrecord/","");
-    l = l.replace(".html","");
-    switch (l){        
-        case "createNewProduct":  
-            createNewProductForm();
-            break;
-        case "productList":  
-            productListAjax();
-            break;        
-    }
-})();
-
 function createNewProductForm(){
     $("#output").html(loader);
     $.ajax({
@@ -242,6 +228,21 @@ function createNewProductForm(){
     });
 }
 
+function createNewWarehouseForm(){
+    $("#output").html(loader);
+    $.ajax({
+        url:"createNewWarehouseForm.html",
+        success:function(data){
+            $("#output").html(data);             
+            document.getElementById('createWarehouse')
+                    .addEventListener('submit', function(event) {
+                        createNewProductSubmit(event);
+                    });
+        },error:function(e1,e2,e3){
+            console.log(e2);
+        }
+    });
+}
 
 function productListAjax(){
     $("#output").html(loader);
@@ -265,3 +266,20 @@ function productDetail(id){
         }
     });        
 }
+
+(function(){ 
+    l = window.location.pathname;
+    l = l.replace("/swiftrecord/","");
+    l = l.replace(".html","");
+    switch (l){        
+        case "createNewProduct":  
+            createNewProductForm();
+            break;
+        case "productList":  
+            productListAjax();
+            break;
+        case "createNewWarehouse":  
+            createNewWarehouseForm();
+            break;
+    }
+})();

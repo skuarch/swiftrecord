@@ -11,6 +11,7 @@ import model.beans.Product;
 import model.beans.User;
 import model.database.ProductModel;
 import model.logic.CreateTransactionNewProduct;
+import model.logic.NotificationBroadcast;
 import model.util.HandlerExceptionUtil;
 import model.util.SessionUtil;
 import org.apache.log4j.Logger;
@@ -52,7 +53,8 @@ public class CreateNewProductProcess extends BaseController {
             jsono.append("message", message);
             mav.addObject("json", jsono.toString());
 
-            runBackgroundTasks(product, SessionUtil.getUser(session));
+            runBackgroundTasks(product, SessionUtil.getUser(session));  
+            sendNotificationNewProduct();
 
         } catch (Exception e) {
             HandlerExceptionUtil.json(mav, messageSource, e, logger, locale, "text41");            
@@ -95,6 +97,15 @@ public class CreateNewProductProcess extends BaseController {
 
         return id;
 
+    }
+    
+    //==========================================================================
+    private void sendNotificationNewProduct(){
+    
+        new Thread(() -> {
+            NotificationBroadcast.sendMessage("new Product was created");
+        }).start();
+    
     }
 
 }

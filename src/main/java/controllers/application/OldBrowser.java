@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class OldBrowser extends BaseController {
 
-    //?=========================================================================
+    //==========================================================================
     @RequestMapping(value = {"oldBrowser", "/oldBrowser",})
     public ModelAndView oldBrowser(ModelAndView mav) {
         mav.setViewName("application/oldBrowser");

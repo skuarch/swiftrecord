@@ -20,29 +20,27 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ProductList extends BaseController {
-    
+
     @Autowired
     private MessageSource messageSource;
     private static final Logger logger = Logger.getLogger(ProductList.class);
-    
+
     //==========================================================================
-    @RequestMapping(value = {"productList","/productList"} , method = RequestMethod.GET)
-    public ModelAndView productList(Locale locale){
-        
-        ModelAndView mav = new ModelAndView("products/productListContainer");
-        ArrayList<Product> productList = null;
-        
+    @RequestMapping(value = {"productList", "/productList"}, method = RequestMethod.GET)
+    public ModelAndView productList(Locale locale) {
+
+        ModelAndView mav = null;
+
         try {
-            
-            productList = new DAO().getArrayList(new Product());
-            mav.addObject("productList",productList);
-            
+
+            mav = new ModelAndView("products/productListContainer");
+
         } catch (Exception e) {
-            HandlerExceptionUtil.json(mav, messageSource, e, logger, locale, "text41");            
+            HandlerExceptionUtil.json(mav, messageSource, e, logger, locale, "text41");
         }
-        
+
         return mav;
-        
+
     }
-    
+
 }

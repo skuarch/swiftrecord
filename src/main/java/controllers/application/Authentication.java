@@ -27,12 +27,14 @@ public class Authentication extends BaseController {
     private static final Logger logger = Logger.getLogger(Authentication.class);
     @Autowired
     private HttpSession session;
+    @Autowired
+    private AuthenticationBean ab;
+    
     
     //==========================================================================
     @RequestMapping(value = {"authentication", "/authentication"}, method = RequestMethod.POST)
-    public ModelAndView Authentication(@RequestParam("email") String email, @RequestParam("password") String password,HttpServletResponse response) {
+    public ModelAndView Authentication(@RequestParam("email") String email, @RequestParam("password") String password,HttpServletResponse response) {        
         
-        AuthenticationBean ab = null;
         HashMap parameters = new HashMap();
         User user = null;
         List<User> userList = null;    
@@ -42,8 +44,7 @@ public class Authentication extends BaseController {
             
             setHeaderNoChache(response);
             
-            mav.setViewName("application/json");            
-            ab = new AuthenticationBean();
+            mav.setViewName("application/json");                        
             
             if(response == null){
                 return mav;

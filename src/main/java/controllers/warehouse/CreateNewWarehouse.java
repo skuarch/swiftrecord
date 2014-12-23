@@ -26,9 +26,11 @@ public class CreateNewWarehouse extends BaseController {
     @RequestMapping(value = {"createNewWarehouse","/createNewWarehouse"}, method = RequestMethod.GET)
     public ModelAndView createNewWarehouse(Locale locale) {
 
-        ModelAndView mav = new ModelAndView("warehouse/createNewWarehouseForm");
+        ModelAndView mav = null;
 
         try {
+            
+            mav = new ModelAndView("warehouse/createNewWarehouse");
 
         } catch (Exception e) {
             HandlerExceptionUtil.alert(mav, messageSource, e, logger, locale);

@@ -28,6 +28,10 @@ public class CreateTransactionNewProduct implements Callable<Long> {
     @Override
     public Long call() throws Exception {
 
+        if(product == null || user == null){
+            throw new IllegalArgumentException("illegal argument");
+        }
+        
         long id;
         TransactionType tt = null;
         ProductTransaction pt = null;

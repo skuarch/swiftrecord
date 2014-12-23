@@ -52,13 +52,9 @@ public class Notification {
 
             if (sessions.size() > 0) {
 
-                for (Session session : sessions) {
-
-                    if (session.isOpen()) {                        
-                        session.getAsyncRemote().sendText(text);
-                    }
-
-                }
+                sessions.stream().filter((session) -> (session.isOpen())).forEach((session) -> {
+                    session.getAsyncRemote().sendText(text);
+                });
 
             }
 
